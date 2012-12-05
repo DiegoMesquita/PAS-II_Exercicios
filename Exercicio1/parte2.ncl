@@ -5,16 +5,31 @@
 		<regionBase>
 			<region id="rgTV">
 				<region id="rgVideo"/>
-				<region id="rgInteractiveMenuTemp" right="20" top="10" width="330" height="255" />
+				<region id="rgInteractiveMenuTemp" right="20" top="10" width="330" height="255" zIndex="2"/>
 				<region id="rgInteractive" right="20" bottom="10" width="100" height="100"/>
+				<region id="rgsp" left="70%" top="25%" zIndex="3"/>
+				<region id="rgpa" left="70%" top="33%" zIndex="3"/>
+				<region id="rgjp" left="70%" top="40%" zIndex="3"/>
+				
 			</region>
 		</regionBase>
 		<descriptorBase>
 			<descriptor id="dVideo" region="rgVideo"/>
 			<descriptor id="dInteractiveMenuTemp" region="rgInteractiveMenuTemp"/>
-			<descriptor id="dInteractive" region="rgInteractive">
-				
+			<descriptor id="dInteractive" region="rgInteractive"/>
+			<descriptor id="djp" region="rgjp">
+				<descriptorParam name="fontSize" value="15"/>
+				<descriptorParam name="fontColor" value="black"/>
 			</descriptor>
+			<descriptor id="dsp" region="rgsp">
+				<descriptorParam name="fontSize" value="15"/>
+				<descriptorParam name="fontColor" value="black"/>
+			</descriptor>
+			<descriptor id="dpa" region="rgpa">
+				<descriptorParam name="fontSize" value="15"/>
+				<descriptorParam name="fontColor" value="black"/>
+			</descriptor>
+				
 		</descriptorBase>
 		
 		<connectorBase>
@@ -65,19 +80,50 @@
 	<body>
 		<port id="pvideo" component="video"/>
 		
-		<media id="video" src="media/animGar.mp4" descriptor="dVideo"/>
-		<media id="menu" src="media/menu1.png" descriptor="dInteractiveMenuTemp"/>
+		<media id="video" src="media/480-cnn.mp4" descriptor="dVideo"/>
+		<media id="menu" src="media/menu.png" descriptor="dInteractiveMenuTemp"/>
 		<media id="interactive" src="media/interactive.png" descriptor="dInteractive"/>
-		<media id="temp1" src="media/tempSP.txt.txt" descriptor="dInteractiveMenuTemp"/>
-		<media id="temp2" src="media/tempPA.txt.txt" descriptor="dInteractiveMenuTemp"/>
-		<media id="temp3" src="media/tempJP.txt.txt" descriptor="dInteractiveMenuTemp"/>
-		
-		
+		<media id="temp1" src="media/tempSP.txt" descriptor="dInteractiveMenuTemp"/>
+		<media id="temp2" src="media/tempPA.txt" descriptor="dInteractiveMenuTemp"/>
+		<media id="temp3" src="media/tempJP.txt" descriptor="dInteractiveMenuTemp"/>
+		<media id="sp" src="media/SP.txt" descriptor="dsp"/>
+		<media id="jp" src="media/JP.txt" descriptor="djp"/>
+		<media id="pa" src="media/PA.txt" descriptor="dpa"/>
 		
 		<!--Inicia o ícone Interativo ao iniciar o video-->
 		<link xconnector="onBegin">
 			<bind role="onBegin" component="video" />
 			<bind role="start" component="interactive" />
+		</link>
+
+		<link xconnector="onBegin">
+			<bind role="onBegin" component="menu" />
+			<bind role="start" component="sp" />
+		</link>
+		
+		<link xconnector="onEnd">
+			<bind role="onEnd" component="menu" />
+			<bind role="stop" component="sp" />
+		</link>
+		
+				<link xconnector="onBegin">
+			<bind role="onBegin" component="menu" />
+			<bind role="start" component="pa" />
+		</link>
+		
+		<link xconnector="onEnd">
+			<bind role="onEnd" component="menu" />
+			<bind role="stop" component="pa" />
+		</link>
+
+		<link xconnector="onBegin">
+			<bind role="onBegin" component="menu" />
+			<bind role="start" component="jp" />
+		</link>
+		
+		<link xconnector="onEnd">
+			<bind role="onEnd" component="menu" />
+			<bind role="stop" component="jp" />
 		</link>
 		
 		<!--Ao terminar o video, encerrar tudo-->

@@ -5,16 +5,20 @@
 		<regionBase>
 			<region id="rgTV">
 				<region id="rgVideo"/>
-				<region id="rgInteractive" right="20" bottom="10" width="100" height="100" />
-
+				<region id="rgInteractive" right="50" top="85%" width="117" height="119" />
+				<region id="rgJP">
+					
+				</region>
 			</region>
 		</regionBase>
 		
 		<!--explicitDur="5s" faz com que cada interação dure apenas 5 segundos-->
 		<descriptorBase>
 			<descriptor id="dVideo" region="rgVideo"/>
-			<descriptor id="dInteractive" region="rgInteractive" explicitDur="5s"/>
-				
+			<descriptor id="dInteractive" region="rgInteractive" explicitDur="5s">
+				<descriptorParam name="fontSize" value="17"/>
+			</descriptor>
+								
 			<descriptor id="dInteractiveFinal" region="rgInteractive"/>
 				
 		</descriptorBase>
@@ -43,12 +47,15 @@
 	<body>
 		<port id="pPrincipal" component="video"/>
 	
-		<media id="video" src="media/animGar.mp4" descriptor="dVideo"/>
+		<media id="video" src="media/480-cnn.mp4" descriptor="dVideo"/>
 		<media id="interactive" src="media/interactive.png" descriptor="dInteractive"/>
 		<media id="interactiveFinal" src="media/interactive.png" descriptor="dInteractiveFinal"/>
-		<media id="tempSP" src="media/tempSP.txt.txt" descriptor="dInteractive"/>
-		<media id="tempPA" src="media/tempPA.txt.txt" descriptor="dInteractive"/>
-		<media id="tempJP" src="media/tempJP.txt.txt" descriptor="dInteractive"/>
+		<media id="tempSP" src="media/tempSP.txt" descriptor="dInteractive"/>
+		<media id="tempPA" src="media/tempPA.txt" descriptor="dInteractive"/>
+		<media id="tempJP" src="media/tempJP.txt" descriptor="dInteractive"/>
+		<media id="jp" src="media/JP.txt" >
+			
+		</media>
 		
 		
 		<!--Aos 5 segundos de video, exibe o icone Interativo-->				
